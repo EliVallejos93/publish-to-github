@@ -15,12 +15,12 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
+    "importHelpers": false,
+    "target": "es5",
+    "module": "esnext",
     "useDefineForClassFields": false,
     "lib": [
-      "ES2022",
+      "es2015",
       "dom"
     ]
   },
@@ -29,5 +29,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
 }
