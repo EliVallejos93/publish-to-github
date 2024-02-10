@@ -8,8 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,8 +22,6 @@ import { MatIconModule } from '@angular/material/icon';
     ToastModule,
     MessageModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
