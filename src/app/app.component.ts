@@ -112,9 +112,6 @@ export class AppComponent {
 
 
   guardarCliente() {
-    console.log('this.clienteFechaNacimiento');
-    console.log(this.clienteFechaNacimiento);
-
     if (this.validCliente()) {
       this.spinner = true;
       let body = {
@@ -127,15 +124,10 @@ export class AppComponent {
         telefono: this.clienteTelefono,
         email: this.clienteEmail
       };
-      // aca tengo que preguntar si hay id es una actualizacion, sion es nuevo
-      console.log('this.clienteId');
-      console.log(this.clienteId);
       //si tiene id es edicion, sino es nuevo.
       if (this.clienteId) {
-        console.log('Editar');
+        console.log('Edicion');
         body.id = this.clienteId;
-        console.log('body');
-        console.log(body);
         this.ClientesService.Update(body).subscribe((res: any) => {
           this.spinner = false;
           this.showAlert(res.code, res.code, res.message);
@@ -180,8 +172,8 @@ export class AppComponent {
           // conversion de formato de fecha
           var fecha = new Date(res.message.fechaNacimiento);
           var año = fecha.getFullYear();
-          var mes = ("0" + (fecha.getMonth() + 1)).slice(-2); // Añade ceros a la izquierda si es necesario
-          var dia = ("0" + fecha.getDate()).slice(-2); // Añade ceros a la izquierda si es necesario
+          var mes = ("0" + (fecha.getMonth() + 1)).slice(-2);
+          var dia = ("0" + fecha.getDate()).slice(-2);
           var nuevoFormatoFecha = año + "-" + mes + "-" + dia;
 
           this.clienteNombre = res.message.nombre;
