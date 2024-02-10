@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "CHALLENGEIntuit-Front:build:production"
+              "buildTarget": "CHALLENGEIntuit-Front:build:production"
             },
             "development": {
-              "browserTarget": "CHALLENGEIntuit-Front:build:development"
+              "buildTarget": "CHALLENGEIntuit-Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CHALLENGEIntuit-Front:build"
+            "buildTarget": "CHALLENGEIntuit-Front:build"
           }
         },
         "test": {
