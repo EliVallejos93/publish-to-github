@@ -1,15 +1,3 @@
-<p-toast position="top-right" class="alert alert-warning" key="msg"></p-toast>
-<p-toast key="msg" class="alert alert-warning">
-  <ng-template pTemplate="message">
-  </ng-template>
-</p-toast>
-<p-toast key="msg">
-  <ng-template pTemplate="message">
-      <button mat-button color="warn">Este es un botón de Angular Material</button>
-  </ng-template>
-</p-toast>
-
-
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <div class="toolbar" role="banner">
@@ -17,17 +5,28 @@
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
   <span>Bienvenido al CHALLENGE Intuit de Elias Vallejos</span>
   <div class="spacer"></div>
-  <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
+  <!-- <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
     <svg id="twitter-logo" height="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
       <rect width="400" height="400" fill="none" />
       <path
         d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"
         fill="#fff" />
     </svg>
+  </a> -->
+  <a aria-label="LinkedIn" target="_blank" href="https://linkedin.com/in/elias-vallejos-24001089/"
+    title="LinkedIn" class="linkedin-icon">
+    <img id="linkedin-logo" src="../assets/linkedin-logo1.png" alt="LinkedIn Logo" />
   </a>
+
 </div>
 <div class="content" role="main">
-  <p-toast position="top-right" key="msg"></p-toast>
+  <div class="alert" role="alert"
+    [ngClass]="{'show-alert': this.modal.visible, 'hide-alert': !this.modal.visible, 
+    'alert-success': this.modal.tipo == 'OK', 'alert-warning': this.modal.tipo == 'WARN', 'alert-danger': this.modal.tipo == 'ERR'}"
+    style="margin-top: -70px; position: fixed; width: 50%; z-index: 1000;">
+    <h4 class="alert-heading">{{ this.modal.titulo }}</h4>
+    <p>{{ this.modal.contenido }}</p>
+  </div>
   <div *ngIf="!seleccionoApp">
     <h4 style="margin-left: 180px; margin-bottom: 30px;">Aplicaciones</h4>
     <div class="card-container">
@@ -51,7 +50,7 @@
   </div>
 
   <!-- aca va la app del clima -->
-  <div *ngIf="seleccionoApp" class="container">
+  <div *ngIf="seleccionoApp == 'Clima'" class="container">
     <div class="container p-4">
       <div class="row">
         <div class="col-md-6">
@@ -60,7 +59,6 @@
               <div class="col-12 d-flex justify-content-center">
                 <div *ngIf="spinner" class="spinner-border text-primary" role="status"
                   style="width: 180px; height: 180px; position:absolute; margin-top: -10px;">
-                  <span class="sr-only">Loading...</span>
                 </div>
                 <img src="assets/clima.png" alt="Imagen del clima" width="200" style="margin-top: -20px;">
               </div>
@@ -93,9 +91,8 @@
           <div *ngIf="datosClimaRespuesta" class="card card-body" style="width: 90%; height: 100%;">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="assets/clima.png" alt="Imagen del clima" width="200" style="margin-top: -20px;">
-                <!-- <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[0]}}.png" alt="Imagen del clima" width="90" height="90" style="margin-top: -20px;"> -->
-                <img src="{{icono}}" alt="Imagen del clima" width="90" height="90" style="margin-top: -20px;">
+                <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[0]}}.png" alt="Imagen del clima" width="100"
+                  height="100" style="margin-top: -20px;">
               </div>
               <div class="col-12" style="margin-top: 20px;">
                 <form class="d-flex flex-column col-12" [style.width]="'100%'">
@@ -116,7 +113,8 @@
           <div *ngIf="datosClimaRespuesta" class="card card-body" style="width: 95%; height: 100%;">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="assets/clima.png" alt="Imagen del clima" width="100" style="margin-top: -20px;">
+                <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[1]}}.png" alt="Imagen del clima" width="100"
+                  height="100" style="margin-top: -20px;">
               </div>
               <div class="col-12" style="margin-top: 20px;">
                 <form class="d-flex flex-column col-12" [style.width]="'100%'">
@@ -134,7 +132,8 @@
           <div *ngIf="datosClimaRespuesta" class="card card-body" style="width: 95%; height: 100%;">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="assets/clima.png" alt="Imagen del clima" width="100" style="margin-top: -20px;">
+                <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[2]}}.png" alt="Imagen del clima" width="100"
+                  height="100" style="margin-top: -20px;">
               </div>
               <div class="col-12" style="margin-top: 20px;">
                 <form class="d-flex flex-column col-12" [style.width]="'100%'">
@@ -152,7 +151,8 @@
           <div *ngIf="datosClimaRespuesta" class="card card-body" style="width: 95%; height: 100%;">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="assets/clima.png" alt="Imagen del clima" width="100" style="margin-top: -20px;">
+                <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[3]}}.png" alt="Imagen del clima" width="100"
+                  height="100" style="margin-top: -20px;">
               </div>
               <div class="col-12" style="margin-top: 20px;">
                 <form class="d-flex flex-column col-12" [style.width]="'100%'">
@@ -172,7 +172,8 @@
           <div *ngIf="datosClimaRespuesta" class="card card-body" style="width: 95%; height: 100%;">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="assets/clima.png" alt="Imagen del clima" width="100" style="margin-top: -20px;">
+                <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[4]}}.png" alt="Imagen del clima" width="100"
+                  height="100" style="margin-top: -20px;">
               </div>
               <div class="col-12" style="margin-top: 20px;">
                 <form class="d-flex flex-column col-12" [style.width]="'100%'">
@@ -190,7 +191,8 @@
           <div *ngIf="datosClimaRespuesta" class="card card-body" style="width: 95%; height: 100%;">
             <div class="row">
               <div class="col-12 d-flex justify-content-center">
-                <img src="assets/clima.png" alt="Imagen del clima" width="100" style="margin-top: -20px;">
+                <img src="https://v5i.tutiempo.net/wi/02/90/{{iconos[5]}}.png" alt="Imagen del clima" width="100"
+                  height="100" style="margin-top: -20px;">
               </div>
               <div class="col-12" style="margin-top: 20px;">
                 <form class="d-flex flex-column col-12" [style.width]="'100%'">
@@ -209,7 +211,99 @@
     </div>
   </div>
 
-  <div *ngIf="seleccionoApp" class="btn btn-primary" style="margin-top: 30px;" (click)="selectApp('');">Volver</div>
+  <!-- aca va la app de clientes -->
+  <div *ngIf="seleccionoApp == 'Clientes'" class="container">
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-body" style="width: 90%; height: 100%;">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <div *ngIf="spinner" class="spinner-border text-primary" role="status"
+                  style="width: 180px; height: 180px; position:absolute; margin-top: -10px;">
+                </div>
+                <img src="assets/cliente.png" alt="Imagen del clima" width="200" style="margin-top: -20px;">
+              </div>
+              <div class="col-12" style="margin-top: 20px;">
+                <form class="d-flex flex-column col-12" [style.width]="'100%'">
+                  <label for="nombre">Nombre:</label>
+                  <input id="nombre" name="nombre" class="form-control btn-group" style="height: 40px;"
+                    [(ngModel)]="clienteNombre" required>
+                  <label for="apellido">Apellido:</label>
+                  <input id="apellido" name="apellido" class="form-control btn-group" style="height: 40px;"
+                    [(ngModel)]="clienteApellido" required>
+                  <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                  <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control btn-group"
+                    style="height: 40px;" [(ngModel)]="clienteFechaNacimiento" required>
+                  <label for="cuit">CUIT:</label>
+                  <input id="cuit" name="cuit" class="form-control btn-group" style="height: 40px;"
+                    [(ngModel)]="clienteCuit" required>
+                  <label for="domicilio">Domicilio:</label>
+                  <input id="domicilio" name="domicilio" class="form-control btn-group" style="height: 40px;"
+                    [(ngModel)]="clienteDomicilio" required>
+                  <label for="telefono">Teléfono:</label>
+                  <input id="telefono" name="telefono" class="form-control btn-group" style="height: 40px;"
+                    [(ngModel)]="clienteTelefono" required>
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" class="form-control btn-group" style="height: 40px;"
+                    [(ngModel)]="clienteEmail" required>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-body" style="width: 90%; height: 100%;">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center" style="margin-bottom: 150px;">
+                <div *ngIf="spinner" class="spinner-border text-primary" role="status"
+                  style="width: 180px; height: 180px; position:absolute;">
+                </div>
+                <img src="assets/cliente.png" alt="Imagen del clima" width="200" style="margin-top: -20px;">
+              </div>
+              <button type="submit" style="margin-bottom: 30px;" class="form-control btn btn-outline-success"
+                (click)="guardarCliente()">Guardar</button>
+              <button type="submit" style="margin-bottom: 30px;" class="form-control btn btn-outline-success"
+                (click)="traerClientesTodos()">Mostrar
+                Todos los Clientes</button>
+              <button type="submit" style="margin-bottom: 30px;" class="form-control btn btn-outline-success"
+                (click)="buscarCliente()">Buscar</button>
+              <button type="submit" class="form-control btn btn-outline-warning" (click)="limpiar()">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="clientes.length" class="row container" style="width: 120%; margin-left: -6%; margin-top: 6%;">
+        <div class="card card-body" style="width: 90%; height: 100%;">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha de Nacimiento</th>
+                <th>CUIT</th>
+                <th>Domicilio</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <td style="min-width: 100px;">{{ cliente.nombre }}</td>
+                <td style="min-width: 100px;">{{ cliente.apellido }}</td>
+                <td style="min-width: 180px;">{{ cliente.fechaNacimiento }}</td>
+                <td style="min-width: 120px;">{{ cliente.cuit }}</td>
+                <td style="min-width: 100px;">{{ cliente.domicilio }}</td>
+                <td style="min-width: 100px;">{{ cliente.telefono }}</td>
+                <td style="min-width: 100px;">{{ cliente.email }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div *ngIf="seleccionoApp" class="btn btn-primary" style="margin-top: 30px;" (click)="selectApp('');">Volver</div>
 </div>
 <router-outlet></router-outlet>

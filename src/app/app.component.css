@@ -270,6 +270,29 @@
       padding: 5px;
   }
 
+  .alert {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+  .show-alert {
+    opacity: 1;
+  }
+  
+  .hide-alert {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .linkedin-icon img {
+    height: 24px; /* Ajusta la altura según tus necesidades */
+    width: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+  }
+  
+  .linkedin-icon img:hover {
+    content: url('../assets/linkedin-logo1-mousehover.png'); /* Cambiará la imagen al pasar el mouse */
+  }
+
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
 
